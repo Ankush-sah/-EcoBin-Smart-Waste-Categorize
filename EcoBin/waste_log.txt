@@ -1,7 +1,0 @@
-apple -> Landfill
-plastic -> Recyclable
-banana -> Compostable
-laptop -> Electronic Waste
-banana -> Compostable
-laptop -> Electronic Waste
-apple -> Landfill

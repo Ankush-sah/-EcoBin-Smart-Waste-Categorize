@@ -1,64 +1,84 @@
 # EcoBin: Smart Waste Categorizer
 
-A lightweight Python command-line application that classifies household waste into **Recyclable, Compostable, Electronic Waste, or Landfill** and records each classification in a log file.
+A lightweight Python command-line application that classifies household waste into **Recyclable, Compostable, Electronic Waste, or Landfill** and records classifications in a local log.
 
 ## Features
 
-- Keyword-based waste classification
+- Case-insensitive keyword-based classification
 - Interactive command-line interface
-- Persistent logging to `waste_log.txt`
-- Simple, readable Python implementation
-- Easy to extend with new waste categories and keywords
+- Input validation for empty entries
+- Persistent UTF-8 logging
+- Modular package structure
+- Automated tests with `pytest`
 
 ## How It Works
 
-1. The user enters a waste item such as `plastic bottle` or `banana peel`.
-2. EcoBin normalizes the input and checks it against predefined keyword groups.
-3. The item is assigned a disposal category.
-4. The result is appended to the waste log.
+1. The user enters a waste item.
+2. EcoBin normalizes the input and checks predefined keyword groups.
+3. The first matching category is returned.
+4. The classification is appended to `waste_log.txt`.
 
 ## Project Structure
 
 ```text
 .
-├── EcoBin/
-│   ├── main.py
-│   └── waste_log.txt
+├── src/
+│   └── ecobin/
+│       ├── __init__.py
+│       └── main.py
+├── tests/
+│   └── test_main.py
+├── .gitignore
 └── README.md
 ```
 
-## Run Locally
+## Requirements
 
-Make sure Python 3 is installed, then run:
+- Python 3.9+
+- `pytest` for running tests
+
+## Run the Application
+
+From the repository root:
 
 ```bash
-python EcoBin/main.py
+python -m src.ecobin.main
 ```
 
-Type `exit` to close the application.
-
-## Example
+Example:
 
 ```text
-Enter a waste item (or type 'exit' to quit): plastic bottle
+EcoBin - Smart Waste Categorizer
+Type 'exit' to quit.
+
+Enter a waste item: plastic bottle
 Category: Recyclable
+```
+
+## Run Tests
+
+```bash
+python -m pytest
 ```
 
 ## Technical Notes
 
-The current implementation uses keyword matching rather than a machine-learning model. This keeps the project intentionally simple and makes the classification logic easy to understand and modify.
+The current classifier is **rule-based**, not machine learning. It is deliberately simple so the classification logic is transparent and easy to extend. An item that matches multiple categories currently uses the first matching category defined in `CATEGORIES`.
 
-## Future Improvements
+## Roadmap
 
-- Replace keyword rules with a trained ML classifier
-- Add a larger and more structured waste dataset
-- Add unit tests
-- Improve ambiguous-item handling
-- Add a web or REST API interface
-- Add analytics for waste-category statistics
+- [x] Refactor into a package structure
+- [x] Add automated tests
+- [x] Add input validation
+- [ ] Add a larger labeled waste dataset
+- [ ] Build an ML-based classifier
+- [ ] Add confidence scores
+- [ ] Add a REST API
+- [ ] Add a web interface
+- [ ] Add waste analytics and visualizations
 
 ## Author
 
 **Ankush Sah**
 
-Aspiring AI/ML Engineer focused on Python, machine learning, and practical AI projects.
+Aspiring AI/ML Engineer building practical Python and machine-learning projects.
